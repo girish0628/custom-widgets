@@ -1,0 +1,27 @@
+{
+  "projects": {
+    "AGD66 Zone 55": "PROJCS['AGD_1966_AMG_Zone_55',GEOGCS['GCS_Australian_1966',DATUM['D_Australian_1966',SPHEROID['Australian',6378160,298.25]],PRIMEM['Greenwich',0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000],PARAMETER['False_Northing',10000000],PARAMETER['Central_Meridian',147],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0],UNIT['Meter',1]]",
+    "AGD84 Zone 55": "PROJCS['AGD_1984_AMG_Zone_55',GEOGCS['GCS_Australian_1984',DATUM['D_Australian_1984',SPHEROID['Australian',6378160,298.25]],PRIMEM['Greenwich',0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000],PARAMETER['False_Northing',10000000],PARAMETER['Central_Meridian',147],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0],UNIT['Meter',1]]",
+    "GDA94 Zone 50": "PROJCS['GDA_1994_MGA_Zone_50',GEOGCS['GCS_GDA_1994',DATUM['D_GDA_1994',SPHEROID['GRS_1980',6378137,298.257222101]],PRIMEM['Greenwich',0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000],PARAMETER['False_Northing',10000000],PARAMETER['Central_Meridian',117],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0],UNIT['Meter',1]]",
+    "GDA94 Zone 51": "PROJCS['GDA_1994_MGA_Zone_51',GEOGCS['GCS_GDA_1994',DATUM['D_GDA_1994',SPHEROID['GRS_1980',6378137,298.257222101]],PRIMEM['Greenwich',0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000],PARAMETER['False_Northing',10000000],PARAMETER['Central_Meridian',123],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0],UNIT['Meter',1]]",
+    "GDA2020 Zone 50": "PROJCS['GDA2020_MGA_Zone_50',GEOGCS['GCS_GDA2020',DATUM['D_GDA2020',SPHEROID['GRS_1980',6378137,298.257222101]],PRIMEM['Greenwich',0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000],PARAMETER['False_Northing',10000000],PARAMETER['Central_Meridian',117],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0],UNIT['Meter',1]]",
+    "GDA2020 Zone 51": "PROJCS['GDA2020_MGA_Zone_51',GEOGCS['GCS_GDA2020',DATUM['D_GDA2020',SPHEROID['GRS_1980',6378137,298.257222101]],PRIMEM['Greenwich',0],UNIT['Degree',0.0174532925199433]],PROJECTION['Transverse_Mercator'],PARAMETER['False_Easting',500000],PARAMETER['False_Northing',10000000],PARAMETER['Central_Meridian',123],PARAMETER['Scale_Factor',0.9996],PARAMETER['Latitude_Of_Origin',0],UNIT['Meter',1]]",
+    "AGD66": "GEOGCS['GCS_Australian_1966',DATUM['D_Australian_1966',SPHEROID['Australian',6378160,298.25]],PRIMEM['Greenwich',0],UNIT['Degree',0.0174532925199433]]",
+    "AGD84": "GEOGCS['GCS_Australian_1984',DATUM['D_Australian_1984',SPHEROID['Australian',6378160,298.25]],PRIMEM['Greenwich',0],UNIT['Degree',0.0174532925199433]]",
+    "GDA94": "GEOGCS['GCS_GDA_1994',DATUM['D_GDA_1994',SPHEROID['GRS_1980',6378137,298.257222101]],PRIMEM['Greenwich',0],UNIT['Degree',0.0174532925199433]]",
+    "GDA2020": "GEOGCS['GCS_GDA2020',DATUM['D_GDA2020',SPHEROID['GRS_1980',6378137,298.257222101]],PRIMEM['Greenwich',0],UNIT['Degree',0.0174532925199433]]"
+  },
+
+  "transformation": [
+    { "Destination": "AGD66 Zone 55", "Transformation": "AGD_1966_To_WGS_1984_17_NTv2" },
+    { "Destination": "AGD84 Zone 55", "Transformation": "AGD_1984_To_WGS_1984_9_NTv2" },
+    { "Destination": "GDA94 Zone 50", "Transformation": "GDA_1994_To_WGS_1984" },
+    { "Destination": "GDA94 Zone 51", "Transformation": "GDA_1994_To_WGS_1984" },
+    { "Destination": "GDA2020 Zone 50", "Transformation": "GDA_1994_To_GDA2020_NTv2_3_Conformal + GDA_1994_To_WGS_1984" },
+    { "Destination": "GDA2020 Zone 51", "Transformation": "GDA_1994_To_GDA2020_NTv2_3_Conformal + GDA_1994_To_WGS_1984" },
+    { "Destination": "AGD66", "Transformation": "AGD_1966_To_WGS_1984_17_NTv2" },
+    { "Destination": "AGD84", "Transformation": "AGD_1984_To_WGS_1984_9_NTv2" },
+    { "Destination": "GDA94", "Transformation": "GDA_1994_To_WGS_1984" },
+    { "Destination": "GDA2020", "Transformation": "GDA2020_To_WGS_1984_2" }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "coordinateSystem": [
+    {
+      "id": "system-1",
+      "name": "WGS_1984_Web_Mercator_Auxiliary_Sphere",
+      "wkid": "3857",
+      "displayUnit": "",
+      "elevationUnit": "METRIC",
+      "crs": {
+        "name": "WGS_1984_Web_Mercator_Auxiliary_Sphere",
+        "wkid": 3857,
+        "wkt": "PROJCS['WGS_1984_Web_Mercator_Auxiliary_Sphere',GEOGCS['GCS_WGS_1984',DATUM['D_WGS_1984',SPHEROID['WGS_1984',6378137.0,298.257223563]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]],PROJECTION['Mercator_Auxiliary_Sphere'],PARAMETER['False_Easting',0.0],PARAMETER['False_Northing',0.0],PARAMETER['Central_Meridian',0.0],PARAMETER['Standard_Parallel_1',0.0],PARAMETER['Auxiliary_Sphere_Type',0.0],UNIT['Meter',1.0]]"
+      }
+    },
+    {
+      "id": "system-2",
+      "name": "YAM94",
+      "wkid": "",
+      "displayUnit": "METER",
+      "elevationUnit": "METRIC",
+      "crs": {
+        "name": "YAM94"
+      }
+    },
+    {
+      "id": "system-3",
+      "name": "HBI94",
+      "wkid": "",
+      "displayUnit": "METER",
+      "elevationUnit": "METRIC",
+      "crs": {
+        "name": "HBI94"
+      }
+    },
+    {
+      "id": "system-4",
+      "name": "GCS_WGS_1984",
+      "wkid": "4326",
+      "displayUnit": "DECIMAL_DEGREES",
+      "elevationUnit": "METRIC",
+      "crs": {
+        "name": "GCS_WGS_1984",
+        "wkid": 4326,
+        "wkt": "GEOGCS['GCS_WGS_1984',DATUM['D_WGS_1984',SPHEROID['WGS_1984',6378137.0,298.257223563]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]]"
+      }
+    },
+    {
+      "id": "system-5",
+      "name": "GCS_GDA_1994",
+      "wkid": "4283",
+      "displayUnit": "DECIMAL_DEGREES",
+      "elevationUnit": "METRIC",
+      "crs": {
+        "name": "GCS_GDA_1994",
+        "wkid": 4283,
+        "wkt": "GEOGCS['GCS_GDA_1994',DATUM['D_GDA_1994',SPHEROID['GRS_1980',6378137.0,298.257222101]],PRIMEM['Greenwich',0.0],UNIT['Degree',0.0174532925199433]]"
+      }
+    },
+    {
+      "id": "system-6",
+      "name": "AGD66 Zone 55",
+      "wkid": "",
+      "displayUnit": "METER",
+      "elevationUnit": "METRIC",
+      "crs": { "name": "AGD66 Zone 55" }
+    },
+    {
+      "id": "system-7",
+      "name": "AGD84 Zone 55",
+      "wkid": "",
+      "displayUnit": "METER",
+      "elevationUnit": "METRIC",
+      "crs": { "name": "AGD84 Zone 55" }
+    },
+    {
+      "id": "system-8",
+      "name": "GDA94 Zone 50",
+      "wkid": "",
+      "displayUnit": "METER",
+      "elevationUnit": "METRIC",
+      "crs": { "name": "GDA94 Zone 50" }
+    },
+    {
+      "id": "system-9",
+      "name": "GDA94 Zone 51",
+      "wkid": "",
+      "displayUnit": "METER",
+      "elevationUnit": "METRIC",
+      "crs": { "name": "GDA94 Zone 51" }
+    },
+    {
+      "id": "system-10",
+      "name": "GDA2020 Zone 50",
+      "wkid": "",
+      "displayUnit": "METER",
+      "elevationUnit": "METRIC",
+      "crs": { "name": "GDA2020 Zone 50" }
+    },
+    {
+      "id": "system-11",
+      "name": "GDA2020 Zone 51",
+      "wkid": "",
+      "displayUnit": "METER",
+      "elevationUnit": "METRIC",
+      "crs": { "name": "GDA2020 Zone 51" }
+    },
+    {
+      "id": "system-12",
+      "name": "AGD66",
+      "wkid": "",
+      "displayUnit": "DECIMAL_DEGREES",
+      "elevationUnit": "METRIC",
+      "crs": { "name": "AGD66" }
+    },
+    {
+      "id": "system-13",
+      "name": "AGD84",
+      "wkid": "",
+      "displayUnit": "DECIMAL_DEGREES",
+      "elevationUnit": "METRIC",
+      "crs": { "name": "AGD84" }
+    },
+    {
+      "id": "system-14",
+      "name": "GDA94",
+      "wkid": "",
+      "displayUnit": "DECIMAL_DEGREES",
+      "elevationUnit": "METRIC",
+      "crs": { "name": "GDA94" }
+    },
+    {
+      "id": "system-15",
+      "name": "GDA2020",
+      "wkid": "",
+      "displayUnit": "DECIMAL_DEGREES",
+      "elevationUnit": "METRIC",
+      "crs": { "name": "GDA2020" }
+    }
+  ],
+  "coordinateDecimal": 3,
+  "altitudeDecimal": 2,
+  "showSeparators": true,
+  "displayOrder": "XY",
+  "widgetStyle": "CLASSIC"
+}
