@@ -69,7 +69,10 @@ export default class RPASElevation extends React.PureComponent<Props, State> {
     );
     if (!validation.isValid) { this.showAlert(validation.error, 'error'); return; }
 
-    const taskUrl = getGPTaskUrl((config?.rpasGPUtility as any)?.[0]);
+    const rpasUtilities = config?.rpasGPUtility as any;
+    console.log('[RPASElevation] rpasGPUtility from config:', rpasUtilities);
+    const taskUrl = getGPTaskUrl(rpasUtilities?.[0]);
+    console.log('[RPASElevation] resolved taskUrl:', taskUrl);
     if (!taskUrl) {
       this.showAlert('RPAS Data Loader GP service not configured. Please select a GP service in widget settings.', 'error');
       return;

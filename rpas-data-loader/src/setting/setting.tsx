@@ -176,9 +176,14 @@ const Setting = (props: AllWidgetSettingProps<Config>) => {
               Used for: <strong>RPAS Elevation</strong> and <strong>TLS Elevation</strong>
             </Label>
             <UtilitySelector
-              onChange={utilities =>
-                onSettingChange({ id, config: config.set('rpasGPUtility', utilities as any) })
-              }
+              onChange={utilities => {
+                console.log('[Setting] RPAS UtilitySelector onChange:', utilities);
+                onSettingChange({
+                  id,
+                  config: config.set('rpasGPUtility', utilities as any),
+                  useUtilities: utilities as any
+                });
+              }}
               useUtilities={config?.rpasGPUtility as any}
               types={supportedUtilityTypes}
               showRemove
@@ -197,9 +202,14 @@ const Setting = (props: AllWidgetSettingProps<Config>) => {
               Used for: <strong>Small Project Imagery</strong> (passes filename only)
             </Label>
             <UtilitySelector
-              onChange={utilities =>
-                onSettingChange({ id, config: config.set('smallProjectGPUtility', utilities as any) })
-              }
+              onChange={utilities => {
+                console.log('[Setting] SmallProject UtilitySelector onChange:', utilities);
+                onSettingChange({
+                  id,
+                  config: config.set('smallProjectGPUtility', utilities as any),
+                  useUtilities: utilities as any
+                });
+              }}
               useUtilities={config?.smallProjectGPUtility as any}
               types={supportedUtilityTypes}
               showRemove

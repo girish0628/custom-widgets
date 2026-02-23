@@ -68,7 +68,10 @@ export default class SmallProjectImagery extends React.PureComponent<Props, Stat
     );
     if (!validation.isValid) { this.showAlert(validation.error, 'error'); return; }
 
-    const taskUrl = getGPTaskUrl((config?.smallProjectGPUtility as any)?.[0]);
+    const spUtilities = config?.smallProjectGPUtility as any;
+    console.log('[SmallProjectImagery] smallProjectGPUtility from config:', spUtilities);
+    const taskUrl = getGPTaskUrl(spUtilities?.[0]);
+    console.log('[SmallProjectImagery] resolved taskUrl:', taskUrl);
     if (!taskUrl) {
       this.showAlert('Small Project Imagery GP service not configured. Please select a GP service in widget settings.', 'error');
       return;

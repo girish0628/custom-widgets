@@ -70,7 +70,10 @@ export default class TLSElevation extends React.PureComponent<Props, State> {
     if (!validation.isValid) { this.showAlert(validation.error, 'error'); return; }
 
     // TLS shares the same GP service as RPAS Data Loader
-    const taskUrl = getGPTaskUrl((config?.rpasGPUtility as any)?.[0]);
+    const rpasUtilities = config?.rpasGPUtility as any;
+    console.log('[TLSElevation] rpasGPUtility from config:', rpasUtilities);
+    const taskUrl = getGPTaskUrl(rpasUtilities?.[0]);
+    console.log('[TLSElevation] resolved taskUrl:', taskUrl);
     if (!taskUrl) {
       this.showAlert('RPAS Data Loader GP service not configured. Please select a GP service in widget settings.', 'error');
       return;

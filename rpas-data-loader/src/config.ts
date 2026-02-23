@@ -61,11 +61,30 @@ export const DEFAULT_STYLE_CONFIG: StyleConfig = {
 
 /**
  * Build the full GP task URL from a utility object returned by UtilitySelector.
- * Mirrors the pattern: task ? `${utility.url}/${task}` : utility.url
+ * Tries multiple property paths because jimu versions differ in the shape returned.
  */
 export function getGPTaskUrl(utility: any): string | null {
-  if (!utility?.url) return null;
-  return utility.task ? `${utility.url}/${utility.task}` : utility.url;
+  if (!utility) return null;
+
+  // Log the utility so we can see the exact shape if something goes wrong
+  console.log('[getGPTaskUrl] utility object:', JSON.stringify(utility));
+
+  // url is the standard property; some versions use serviceUrl
+  const baseUrl: string =
+    utility.url ||
+    utility.serviceUrl ||
+    utility.gpUrl ||
+    '';
+
+  if (!baseUrl) {
+    console.warn('[getGPTaskUrl] No URL property found on utility. Keys:', Object.keys(utility));
+    return null;
+  }
+
+  // task is the standard property; taskName is an alternative
+  const task: string = utility.task || utility.taskName || '';
+
+  return task ? `${baseUrl.replace(/\/$/, '')}/${task}` : baseUrl;
 }
 
 /**
