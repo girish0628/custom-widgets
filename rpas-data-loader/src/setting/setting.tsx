@@ -15,7 +15,7 @@ import {
 } from 'jimu-ui';
 import { SettingSection, SettingRow } from 'jimu-ui/advanced/setting-components';
 import { UtilitySelector } from 'jimu-ui/advanced/utility-selector';
-import { Config } from '../config';
+import { Config, resolveGPTaskUrl } from '../config';
 
 const { useState, useRef, useEffect, useCallback } = React;
 
@@ -33,9 +33,6 @@ const getCustomToolUrlWithToken = (url: string) => {
   }
   return url;
 };
-
-const getUtilityGPTaskUrl = (task: string, utilityJson: any) =>
-  task ? `${utilityJson.url}/${task}` : utilityJson.url;
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
@@ -90,7 +87,9 @@ const Setting = (props: AllWidgetSettingProps<Config>) => {
     const selectedUtility = (config?.projectionGPUtility as any)?.[0];
     if (!selectedUtility) return;
 
-    const projectionListUrl = getUtilityGPTaskUrl(selectedUtility.task, selectedUtility);
+    // resolveGPTaskUrl looks up the actual service URL from appConfig.utilities[utilityId]
+    // because UtilitySelector only stores { utilityId, task } — not the URL directly
+    const projectionListUrl = resolveGPTaskUrl(selectedUtility);
 
     setIsLoadingProjections(true);
     submitProjectionJob(projectionListUrl)
@@ -116,9 +115,7 @@ const Setting = (props: AllWidgetSettingProps<Config>) => {
   // ── Derived display URL helper ───────────────────────────────────────────────
 
   const getDisplayUrl = (utilities: any[]): string => {
-    const u = utilities?.[0];
-    if (!u?.url) return '';
-    return u.task ? `${u.url}/${u.task}` : u.url;
+    return resolveGPTaskUrl(utilities?.[0]) || '';
   };
 
   const urlPreviewStyle: React.CSSProperties = {

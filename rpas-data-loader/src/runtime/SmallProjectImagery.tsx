@@ -2,7 +2,7 @@
 import { React, jsx } from 'jimu-core';
 import { Button, Label, TextInput, Select, Option, Alert } from 'jimu-ui';
 import { DatePicker } from 'jimu-ui/basic/date-picker';
-import { Config, getGPTaskUrl, getProjectionOptions } from '../config';
+import { Config, resolveGPTaskUrl, getProjectionOptions } from '../config';
 import FileUploader from './FileUploader';
 import { ValidationService } from './ValidationService';
 import * as geoprocessor from 'esri/rest/geoprocessor';
@@ -69,9 +69,7 @@ export default class SmallProjectImagery extends React.PureComponent<Props, Stat
     if (!validation.isValid) { this.showAlert(validation.error, 'error'); return; }
 
     const spUtilities = config?.smallProjectGPUtility as any;
-    console.log('[SmallProjectImagery] smallProjectGPUtility from config:', spUtilities);
-    const taskUrl = getGPTaskUrl(spUtilities?.[0]);
-    console.log('[SmallProjectImagery] resolved taskUrl:', taskUrl);
+    const taskUrl = resolveGPTaskUrl(spUtilities?.[0]);
     if (!taskUrl) {
       this.showAlert('Small Project Imagery GP service not configured. Please select a GP service in widget settings.', 'error');
       return;

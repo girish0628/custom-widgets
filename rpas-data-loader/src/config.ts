@@ -1,4 +1,4 @@
-import { ImmutableObject } from 'jimu-core';
+import { ImmutableObject, getAppStore } from 'jimu-core';
 
 /**
  * Main widget configuration interface
@@ -60,31 +60,52 @@ export const DEFAULT_STYLE_CONFIG: StyleConfig = {
 };
 
 /**
- * Build the full GP task URL from a utility object returned by UtilitySelector.
- * Tries multiple property paths because jimu versions differ in the shape returned.
+ * Resolve the full GP task URL from a utility object returned by UtilitySelector.
+ *
+ * UtilitySelector stores { utilityId, task } — the actual service URL lives in
+ * appConfig.utilities[utilityId].  We look it up from the app store first, and
+ * fall back to a direct .url property in case a future jimu version embeds it.
  */
-export function getGPTaskUrl(utility: any): string | null {
+export function resolveGPTaskUrl(utility: any): string | null {
   if (!utility) return null;
 
-  // Log the utility so we can see the exact shape if something goes wrong
-  console.log('[getGPTaskUrl] utility object:', JSON.stringify(utility));
-
-  // url is the standard property; some versions use serviceUrl
-  const baseUrl: string =
-    utility.url ||
-    utility.serviceUrl ||
-    utility.gpUrl ||
-    '';
-
-  if (!baseUrl) {
-    console.warn('[getGPTaskUrl] No URL property found on utility. Keys:', Object.keys(utility));
-    return null;
+  // ── 1. Look up the service URL from the app config by utilityId ───────────
+  const utilityId: string = utility.utilityId || '';
+  if (utilityId) {
+    try {
+      const state = getAppStore().getState() as any;
+      // The utilities dict lives at appConfig.utilities in both runtime and builder
+      const appConfig =
+        state?.appConfig ||
+        state?.builder?.appStateInBuilder?.appConfig;
+      const def = appConfig?.utilities?.[utilityId];
+      if (def?.url) {
+        const task: string = def.task || utility.task || '';
+        const url = `${(def.url as string).replace(/\/$/, '')}${task ? '/' + task : ''}`;
+        console.log('[resolveGPTaskUrl] resolved from appConfig:', url);
+        return url;
+      }
+    } catch (e) {
+      console.warn('[resolveGPTaskUrl] appConfig lookup failed:', e);
+    }
   }
 
-  // task is the standard property; taskName is an alternative
-  const task: string = utility.task || utility.taskName || '';
+  // ── 2. Fall back: URL embedded directly on the utility object ────────────
+  const directUrl: string = utility.url || utility.serviceUrl || '';
+  if (directUrl) {
+    const task: string = utility.task || utility.taskName || '';
+    const url = `${directUrl.replace(/\/$/, '')}${task ? '/' + task : ''}`;
+    console.log('[resolveGPTaskUrl] resolved from direct url:', url);
+    return url;
+  }
 
-  return task ? `${baseUrl.replace(/\/$/, '')}/${task}` : baseUrl;
+  console.warn('[resolveGPTaskUrl] Could not resolve URL. utility:', utility);
+  return null;
+}
+
+/** @deprecated use resolveGPTaskUrl */
+export function getGPTaskUrl(utility: any): string | null {
+  return resolveGPTaskUrl(utility);
 }
 
 /**

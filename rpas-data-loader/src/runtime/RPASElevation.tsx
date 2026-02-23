@@ -2,7 +2,7 @@
 import { React, jsx } from 'jimu-core';
 import { Button, Label, TextInput, Select, Option, Alert } from 'jimu-ui';
 import { DatePicker } from 'jimu-ui/basic/date-picker';
-import { Config, getGPTaskUrl, getProjectionOptions } from '../config';
+import { Config, resolveGPTaskUrl, getProjectionOptions } from '../config';
 import FileUploader from './FileUploader';
 import { ValidationService } from './ValidationService';
 import { ArcGISFileUploadService } from './ArcGISFileUploadService';
@@ -70,9 +70,7 @@ export default class RPASElevation extends React.PureComponent<Props, State> {
     if (!validation.isValid) { this.showAlert(validation.error, 'error'); return; }
 
     const rpasUtilities = config?.rpasGPUtility as any;
-    console.log('[RPASElevation] rpasGPUtility from config:', rpasUtilities);
-    const taskUrl = getGPTaskUrl(rpasUtilities?.[0]);
-    console.log('[RPASElevation] resolved taskUrl:', taskUrl);
+    const taskUrl = resolveGPTaskUrl(rpasUtilities?.[0]);
     if (!taskUrl) {
       this.showAlert('RPAS Data Loader GP service not configured. Please select a GP service in widget settings.', 'error');
       return;
