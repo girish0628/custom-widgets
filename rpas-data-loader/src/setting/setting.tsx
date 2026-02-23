@@ -15,7 +15,6 @@ import {
 } from 'jimu-ui';
 import { SettingSection, SettingRow } from 'jimu-ui/advanced/setting-components';
 import { UtilitySelector } from 'jimu-ui/advanced/utility-selector';
-import * as geoprocessor from 'esri/rest/geoprocessor';
 import { Config } from '../config';
 
 const { useState, useRef, useEffect, useCallback } = React;
@@ -47,12 +46,16 @@ const Setting = (props: AllWidgetSettingProps<Config>) => {
   const [isLoadingProjections, setIsLoadingProjections] = useState(false);
 
   const esriRequest = useRef<any>();
+  const geoprocessor = useRef<any>();
   const projectionList = useRef<ProjectionList>({});
 
-  // Load esri/request module (same as export widget)
+  // Dynamically load ESRI modules — static imports of esri/* are not allowed in setting files
   useEffect(() => {
     loadArcGISJSAPIModule('esri/request').then(mod => {
       esriRequest.current = mod;
+    });
+    loadArcGISJSAPIModule('esri/rest/geoprocessor').then(mod => {
+      geoprocessor.current = mod;
     });
   }, []);
 
@@ -73,7 +76,7 @@ const Setting = (props: AllWidgetSettingProps<Config>) => {
 
   const submitProjectionJob = async (toolUrl: string, needToken = true): Promise<any> => {
     const url = needToken ? getCustomToolUrlWithToken(toolUrl) : toolUrl;
-    const jobInfo = await geoprocessor.submitJob(url, {});
+    const jobInfo = await geoprocessor.current.submitJob(url, {});
     await jobInfo.waitForJobCompletion({
       interval: 1500,
       statusCallback: (j: any) => { console.log('Projection job status:', j.jobStatus); }
