@@ -1,0 +1,23 @@
+{
+  "name": "rpas-data-loader",
+  "label": "RPAS Data Loader",
+  "type": "widget",
+  "version": "1.1.0",
+  "exbVersion": "1.18.0",
+  "author": "GIRISH",
+  "description": "RPAS, TLS, and Small Project Imagery Data Loader with GP Service integration, webhook support, and full style customization",
+  "copyright": "",
+  "license": "",
+  "properties": {
+    "hasSettingPage": true,
+    "hasLocale": false,
+    "supportInlineEditing": false,
+    "supportAutoSize": true,
+    "canCrossLayoutBoundary": false
+  },
+  "translatedLocales": ["en"],
+  "defaultSize": {
+    "width": 1200,
+    "height": 750
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "gpServiceUrl": "",
+  "webhookUrl": "",
+  "maxFileSizeMB": 500,
+  "allowedExtensions": [".las", ".laz", ".xyz", ".txt"]
+}
