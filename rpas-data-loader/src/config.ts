@@ -1,13 +1,14 @@
-import { ImmutableObject, getAppStore } from 'jimu-core';
+import { ImmutableObject, getAppStore, UtilityManager } from 'jimu-core';
 
 /**
  * Main widget configuration interface
  */
 export interface Config {
   rpasGPUtility?: any[];         // GP utility for RPAS Data Loader (used by RPAS Elevation & TLS Elevation)
+  rpasGPUrl?: string;            // Resolved GP task URL for RPAS / TLS Elevation
   smallProjectGPUtility?: any[]; // GP utility for Small Project Imagery
-  projectionGPUtility?: any[];   // GP utility for fetching the projection list
-  selectedProjections?: { [key: string]: string }; // Admin-selected projections from the GP task
+  smallProjectGPUrl?: string;    // Resolved GP task URL for Small Project Imagery
+  selectedProjections?: { [key: string]: string }; // Admin-selected subset of projections from PROJECTIONS
   maxFileSizeMB: number;
   allowedExtensions: string[];
   style?: StyleConfig;
@@ -69,31 +70,51 @@ export const DEFAULT_STYLE_CONFIG: StyleConfig = {
 export function resolveGPTaskUrl(utility: any): string | null {
   if (!utility) return null;
 
-  // ── 1. Look up the service URL from the app config by utilityId ───────────
   const utilityId: string = utility.utilityId || '';
+  const task: string = utility.task || utility.taskName || '';
+
   if (utilityId) {
+    // ── 1. UtilityManager (official jimu API) ─────────────────────────────
+    try {
+      const uJson = UtilityManager.getInstance().getUtilityJson(utilityId);
+      const baseUrl: string = (uJson as any)?.url || '';
+      if (baseUrl) {
+        const url = `${baseUrl.replace(/\/$/, '')}${task ? '/' + task : ''}`;
+        console.log('[resolveGPTaskUrl] resolved via UtilityManager:', url);
+        return url;
+      }
+      console.warn('[resolveGPTaskUrl] UtilityManager returned no URL for', utilityId, uJson);
+    } catch (e) {
+      console.warn('[resolveGPTaskUrl] UtilityManager failed:', e);
+    }
+
+    // ── 2. Fallback: walk the Redux state ─────────────────────────────────
     try {
       const state = getAppStore().getState() as any;
-      // The utilities dict lives at appConfig.utilities in both runtime and builder
+      // In builder mode the live config is at builder.appStateInBuilder.appConfig;
+      // in runtime it is at appConfig. Prefer whichever has utilities populated.
+      const stateAppConfig = state?.appConfig;
+      const builderAppConfig = state?.builder?.appStateInBuilder?.appConfig;
       const appConfig =
-        state?.appConfig ||
-        state?.builder?.appStateInBuilder?.appConfig;
+        (stateAppConfig?.utilities?.[utilityId] ? stateAppConfig : null) ||
+        (builderAppConfig?.utilities?.[utilityId] ? builderAppConfig : null) ||
+        stateAppConfig ||
+        builderAppConfig;
       const def = appConfig?.utilities?.[utilityId];
+      console.log('[resolveGPTaskUrl] state fallback def for', utilityId, ':', def);
       if (def?.url) {
-        const task: string = def.task || utility.task || '';
         const url = `${(def.url as string).replace(/\/$/, '')}${task ? '/' + task : ''}`;
-        console.log('[resolveGPTaskUrl] resolved from appConfig:', url);
+        console.log('[resolveGPTaskUrl] resolved from state:', url);
         return url;
       }
     } catch (e) {
-      console.warn('[resolveGPTaskUrl] appConfig lookup failed:', e);
+      console.warn('[resolveGPTaskUrl] state fallback failed:', e);
     }
   }
 
-  // ── 2. Fall back: URL embedded directly on the utility object ────────────
+  // ── 3. Direct URL on the object ───────────────────────────────────────────
   const directUrl: string = utility.url || utility.serviceUrl || '';
   if (directUrl) {
-    const task: string = utility.task || utility.taskName || '';
     const url = `${directUrl.replace(/\/$/, '')}${task ? '/' + task : ''}`;
     console.log('[resolveGPTaskUrl] resolved from direct url:', url);
     return url;

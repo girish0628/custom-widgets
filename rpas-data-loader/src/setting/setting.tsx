@@ -1,116 +1,23 @@
 import {
-  React,
-  loadArcGISJSAPIModule,
-  ServiceManager,
-  SessionManager,
-  SignInErrorCode
+  React
 } from 'jimu-core';
 import { AllWidgetSettingProps } from 'jimu-for-builder';
 import {
   TextInput,
   Label,
-  Loading,
   AdvancedSelect,
   type AdvancedSelectItem
 } from 'jimu-ui';
 import { SettingSection, SettingRow } from 'jimu-ui/advanced/setting-components';
 import { UtilitySelector } from 'jimu-ui/advanced/utility-selector';
-import { Config, resolveGPTaskUrl } from '../config';
-
-const { useState, useRef, useEffect, useCallback } = React;
-
-type ProjectionList = { [key: string]: string };
+import { Config, resolveGPTaskUrl, PROJECTIONS } from '../config';
 
 const supportedUtilityTypes = ['GPTask'];
-
-// ── Helpers (same pattern as export widget) ───────────────────────────────────
-
-const getCustomToolUrlWithToken = (url: string) => {
-  const isHosted = !!ServiceManager.getInstance().getServerInfoByServiceUrl(url);
-  if (!isHosted) {
-    const token = SessionManager.getInstance().getSessionByUrl(url)?.token;
-    return token ? `${url}?token=${token}` : url;
-  }
-  return url;
-};
 
 // ── Component ─────────────────────────────────────────────────────────────────
 
 const Setting = (props: AllWidgetSettingProps<Config>) => {
   const { id, config, onSettingChange } = props;
-
-  const [availableProjections, setAvailableProjections] = useState<AdvancedSelectItem[]>([]);
-  const [isLoadingProjections, setIsLoadingProjections] = useState(false);
-
-  const esriRequest = useRef<any>();
-  const geoprocessor = useRef<any>();
-  const projectionList = useRef<ProjectionList>({});
-
-  // Dynamically load ESRI modules — static imports of esri/* are not allowed in setting files
-  useEffect(() => {
-    loadArcGISJSAPIModule('esri/request').then(mod => {
-      esriRequest.current = mod;
-    });
-    loadArcGISJSAPIModule('esri/rest/geoprocessor').then(mod => {
-      geoprocessor.current = mod;
-    });
-  }, []);
-
-  // ── GP helpers (same as export widget) ──────────────────────────────────────
-
-  const getWebToolJSON = async (toolUrl: string, needToken = true): Promise<any> => {
-    const options = { query: { f: 'json' }, responseType: 'json' };
-    const url = needToken ? getCustomToolUrlWithToken(toolUrl) : toolUrl;
-    try {
-      const res = await esriRequest.current(url, options);
-      return res.data;
-    } catch (error: any) {
-      const code = SessionManager.getInstance().getSignInErrorCodeByAuthError(error);
-      if (code === SignInErrorCode.InvalidToken) return getWebToolJSON(toolUrl, false);
-      throw error;
-    }
-  };
-
-  const submitProjectionJob = async (toolUrl: string, needToken = true): Promise<any> => {
-    const url = needToken ? getCustomToolUrlWithToken(toolUrl) : toolUrl;
-    const jobInfo = await geoprocessor.current.submitJob(url, {});
-    await jobInfo.waitForJobCompletion({
-      interval: 1500,
-      statusCallback: (j: any) => { console.log('Projection job status:', j.jobStatus); }
-    });
-    return jobInfo.fetchResultData('Projection_List');
-  };
-
-  // ── Projection setup (same pattern as export widget) ────────────────────────
-
-  const setupProjection = useCallback(() => {
-    const selectedUtility = (config?.projectionGPUtility as any)?.[0];
-    if (!selectedUtility) return;
-
-    // resolveGPTaskUrl looks up the actual service URL from appConfig.utilities[utilityId]
-    // because UtilitySelector only stores { utilityId, task } — not the URL directly
-    const projectionListUrl = resolveGPTaskUrl(selectedUtility);
-
-    setIsLoadingProjections(true);
-    submitProjectionJob(projectionListUrl)
-      .then(res => {
-        projectionList.current = res.value['projections'];
-        setAvailableProjections(
-          Object.keys(projectionList.current).map(key => ({ label: key, value: key }))
-        );
-        setIsLoadingProjections(false);
-      })
-      .catch(err => {
-        console.error('Failed to load projections:', err);
-        setIsLoadingProjections(false);
-      });
-  }, [config?.projectionGPUtility]);
-
-  useEffect(() => {
-    if (config?.projectionGPUtility) {
-      setupProjection();
-    }
-  }, [config?.projectionGPUtility]);
 
   // ── Derived display URL helper ───────────────────────────────────────────────
 
@@ -130,14 +37,11 @@ const Setting = (props: AllWidgetSettingProps<Config>) => {
     border: '1px solid #dde0e5'
   };
 
-  // Currently selected projections → AdvancedSelectItem map for selectedValues
-  const currentSelectedProjections: { [value: string]: AdvancedSelectItem } =
+  // Currently selected projections → AdvancedSelectItem array for selectedValues
+  const currentSelectedProjections: AdvancedSelectItem[] =
     config?.selectedProjections
-      ? Object.keys(config.selectedProjections as any).reduce((acc, key) => {
-          acc[key] = { label: key, value: key };
-          return acc;
-        }, {} as any)
-      : {};
+      ? Object.keys(config.selectedProjections as any).map(key => ({ label: key, value: key }))
+      : [];
 
   // ── File settings handlers ───────────────────────────────────────────────────
 
@@ -158,7 +62,6 @@ const Setting = (props: AllWidgetSettingProps<Config>) => {
 
   const rpasUrl = getDisplayUrl(config?.rpasGPUtility as any);
   const smallProjectUrl = getDisplayUrl(config?.smallProjectGPUtility as any);
-  const projectionUrl = getDisplayUrl(config?.projectionGPUtility as any);
 
   // ── Render ───────────────────────────────────────────────────────────────────
 
@@ -175,9 +78,10 @@ const Setting = (props: AllWidgetSettingProps<Config>) => {
             <UtilitySelector
               onChange={utilities => {
                 console.log('[Setting] RPAS UtilitySelector onChange:', utilities);
+                const url = resolveGPTaskUrl((utilities as any)?.[0]) || '';
                 onSettingChange({
                   id,
-                  config: config.set('rpasGPUtility', utilities as any),
+                  config: config.set('rpasGPUtility', utilities as any).set('rpasGPUrl', url),
                   useUtilities: utilities as any
                 });
               }}
@@ -201,9 +105,10 @@ const Setting = (props: AllWidgetSettingProps<Config>) => {
             <UtilitySelector
               onChange={utilities => {
                 console.log('[Setting] SmallProject UtilitySelector onChange:', utilities);
+                const url = resolveGPTaskUrl((utilities as any)?.[0]) || '';
                 onSettingChange({
                   id,
-                  config: config.set('smallProjectGPUtility', utilities as any),
+                  config: config.set('smallProjectGPUtility', utilities as any).set('smallProjectGPUrl', url),
                   useUtilities: utilities as any
                 });
               }}
@@ -217,55 +122,27 @@ const Setting = (props: AllWidgetSettingProps<Config>) => {
         </SettingRow>
       </SettingSection>
 
-      {/* ── Projection GP Service ───────────────────────────────────────── */}
-      <SettingSection title="Projection GP Service">
-        <SettingRow>
-          <div style={{ width: '100%' }}>
-            <UtilitySelector
-              onChange={utilities =>
-                onSettingChange({ id, config: config.set('projectionGPUtility', utilities as any) })
-              }
-              useUtilities={config?.projectionGPUtility as any}
-              types={supportedUtilityTypes}
-              showRemove
-              closePopupOnSelect
-            />
-            {projectionUrl && <div style={urlPreviewStyle}>{projectionUrl}</div>}
-          </div>
-        </SettingRow>
-      </SettingSection>
-
       {/* ── Available Projections ────────────────────────────────────────── */}
       <SettingSection title="Available Projections">
         <SettingRow>
           <div style={{ width: '100%' }}>
-            {isLoadingProjections ? (
-              <Loading />
-            ) : availableProjections.length > 0 ? (
-              <AdvancedSelect
-                isMultiple
-                staticValues={availableProjections}
-                selectedValues={currentSelectedProjections}
-                onChange={items =>
-                  onSettingChange({
-                    id,
-                    config: config.set(
-                      'selectedProjections',
-                      items.reduce(
-                        (acc, cur) => ({ ...acc, [cur.value]: projectionList.current[cur.value] }),
-                        {}
-                      ) as any
-                    )
-                  })
-                }
-              />
-            ) : (
-              <div style={{ color: '#999', fontSize: '0.82rem', fontStyle: 'italic' }}>
-                {config?.projectionGPUtility
-                  ? 'Loading projections from GP service...'
-                  : 'Select a Projection GP service above to load available projections.'}
-              </div>
-            )}
+            <AdvancedSelect
+              isMultiple
+              staticValues={PROJECTIONS.map(p => ({ label: p.label, value: p.label }))}
+              selectedValues={currentSelectedProjections}
+              onChange={items =>
+                onSettingChange({
+                  id,
+                  config: config.set(
+                    'selectedProjections',
+                    items.reduce((acc, cur) => {
+                      const proj = PROJECTIONS.find(p => p.label === cur.label);
+                      return { ...acc, [cur.label]: proj?.value || cur.label };
+                    }, {}) as any
+                  )
+                })
+              }
+            />
           </div>
         </SettingRow>
       </SettingSection>
