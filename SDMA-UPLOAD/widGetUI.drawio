@@ -1,0 +1,67 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
+  <diagram name="Page-1" id="-IZZF56kBEkbApGEoroq">
+    <mxGraphModel dx="1213" dy="828" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-1" value="WIDGET USER FLOW" style="text;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;verticalAlign=middle;fontSize=18;fontStyle=1;rounded=1" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="700" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-2" value="" style="rounded=1;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=2" vertex="1" parent="1">
+          <mxGeometry x="112.5" y="240" width="600" height="450" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-3" value="RPAS Data Loader Widget" style="rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1;sketch=1;curveFitting=1;jiggle=2;glass=0;shadow=0;" vertex="1" parent="1">
+          <mxGeometry x="107.5" y="180" width="600" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-4" value="RPAS Elevation" style="rounded=0;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="122.5" y="290" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-5" value="TLS Elevation" style="rounded=0;fillColor=#f5f5f5;strokeColor=#666666;fontSize=12" vertex="1" parent="1">
+          <mxGeometry x="262.5" y="290" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-6" value="Capture Date/Time:" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="132.5" y="340" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-7" value="2025-12-16 14:30:00" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="292.5" y="335" width="400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-8" value="Description:" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="132.5" y="380" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-9" value="YandiSurvey" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="292.5" y="375" width="400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-10" value="Projection:" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="132.5" y="420" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-11" value="EPG94 (AHD)" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="292.5" y="415" width="400" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-12" value="Upload LAS File:" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="132.5" y="460" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-13" value="Browse..." style="rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="292.5" y="455" width="120" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-14" value="" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2" vertex="1" parent="1">
+          <mxGeometry x="132.5" y="505" width="560" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-15" value="Expected Filename:" style="text;html=1;align=left;verticalAlign=middle;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="142.5" y="515" width="150" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-16" value="20251216143000_YandiSurvey_EPG94_RPAS_jsmith.las" style="text;html=1;align=left;verticalAlign=middle;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="142.5" y="540" width="530" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-17" value="Validate" style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="132.5" y="605" width="120" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-18" value="Upload and Process" style="rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="272.5" y="605" width="160" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="vEv-wIBHg5mNdcF7c8SR-19" value="Status: Processing initiated..." style="rounded=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;align=left" vertex="1" parent="1">
+          <mxGeometry x="472.5" y="605" width="220" height="35" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
