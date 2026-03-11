@@ -1,0 +1,18 @@
+{
+  "mineSites": [
+    "Eastern Ridge",
+    "Jimblebar",
+    "Mining Area C",
+    "South Flank",
+    "Whaleback",
+    "Yandi"
+  ],
+  "complianceTypes": [
+    "Gradient (SME)",
+    "Road Widths (SME)",
+    "Windrows (LV, SME)"
+  ],
+  "jenkinsBaseUrl": "",
+  "jobName": "",
+  "apiToken": ""
+}

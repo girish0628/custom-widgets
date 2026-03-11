@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xargs grep -l '\"\"analysis\"\"')",
+      "Bash(xargs grep -l \"hasSettingPage\")",
+      "Bash(python:*)",
+      "Bash(rm:*)"
+    ]
+  }
+}

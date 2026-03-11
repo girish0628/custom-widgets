@@ -1,0 +1,20 @@
+{
+  "name": "ground-control-exporter",
+  "label": "Ground Control Exporter",
+  "type": "widget",
+  "version": "1.18.0",
+  "exbVersion": "1.18.0",
+  "author": "GIRISH PATHAK",
+  "description": "Triggers a Jenkins job to export XYZ ground control data.",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {},
+  "hasSettingPage": true,
+  "translatedLocales": [
+    "en"
+  ],
+  "defaultSize": {
+    "width": 350,
+    "height": 220
+  }
+}

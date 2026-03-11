@@ -1,0 +1,11 @@
+{
+  "mineSites": [
+    "Eastern Ridge",
+    "Jimblebar",
+    "Yandi",
+    "Mining Area C"
+  ],
+  "jenkinsBaseUrl": "",
+  "jenkinsJobName": "volume-calculator",
+  "jenkinsApiToken": ""
+}

@@ -1,0 +1,9 @@
+{
+  "defaultDistance": 100,
+  "defaultUnit": "meters",
+  "defaultOutputLayerName": "Analysis Result",
+  "enableExport": true,
+  "maxIntersectFeatures": 2000,
+  "autoZoomToResult": true,
+  "showOnlyPolygonLayersForIntersect": false
+}

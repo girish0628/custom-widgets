@@ -1,0 +1,24 @@
+{
+  "name": "data-finalize",
+  "label": "Data Finalise",
+  "type": "widget",
+  "version": "1.0.0",
+  "exbVersion": "1.18.0",
+  "author": "GIRISH PATHAK",
+  "description": "Queries ArcGIS Feature Service for edit statistics (Edited/ReEdited/New/Deleted) per layer and triggers a Jenkins finalization job.",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {
+    "hasSettingPage": true,
+    "supportAutoSize": true,
+    "supportInlineEditing": false,
+    "canCrossLayoutBoundary": false
+  },
+  "translatedLocales": [
+    "en"
+  ],
+  "defaultSize": {
+    "width": 900,
+    "height": 620
+  }
+}

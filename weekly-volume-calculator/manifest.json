@@ -1,0 +1,18 @@
+{
+  "name": "weekly-volume-calculator",
+  "label": "Weekly Volume Calculator",
+  "type": "widget",
+  "version": "1.18.0",
+  "exbVersion": "1.18.0",
+  "author": "GIRISH PATHAK",
+  "description": "Calculates weekly stockpile volumes by triggering a Jenkins pipeline with mine site, location, and capture time parameters. Includes a confirmation workflow and GP-service-driven location lookup.",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {},
+  "translatedLocales": ["en"],
+  "hasSettingPage": true,
+  "defaultSize": {
+    "width": 820,
+    "height": 560
+  }
+}

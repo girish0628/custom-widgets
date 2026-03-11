@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find \"D:\\\\STUFF\\\\drillhole\\\\SDMA\\\\ArcGIS\\\\arcgis-experience-builder-1.18\\\\client\" -maxdepth 2 -name \"*.d.ts\" -path \"*/jimu-for-builder/*\" 2>/dev/null | head -5)",
+      "Bash(grep -r \"PortalItemSelector\" \"D:\\\\STUFF\\\\drillhole\\\\SDMA\\\\ArcGIS\\\\arcgis-experience-builder-1.18\\\\client\\\\jimu-ui\" --include=\"*.d.ts\" -l 2>/dev/null | head -5)",
+      "Bash(grep -r \"PortalItemSelector\" \"D:\\\\STUFF\\\\drillhole\\\\SDMA\\\\ArcGIS\\\\arcgis-experience-builder-1.18\\\\client\\\\jimu-arcgis\" --include=\"*.d.ts\" -l 2>/dev/null | head -5)",
+      "Bash(grep -r \"PortalItemSelector\\\\|portalItemSelector\\\\|ItemSelector\\\\|item-selector\" \"D:\\\\STUFF\\\\drillhole\\\\SDMA\\\\ArcGIS\\\\arcgis-experience-builder-1.18\\\\client\\\\jimu-ui\" --include=\"*.d.ts\" -l 2>/dev/null | head -10)",
+      "Bash(grep -r \"SupportedItemTypes\\\\|ItemTypes\\\\b\" \"D:\\\\STUFF\\\\drillhole\\\\SDMA\\\\ArcGIS\\\\arcgis-experience-builder-1.18\\\\client\\\\jimu-core\" --include=\"*.d.ts\" -l 2>/dev/null | head -5)",
+      "Bash(grep -r \"Feature Service\\\\|FeatureService\\\\|Feature Layer\" \"D:\\\\STUFF\\\\drillhole\\\\SDMA\\\\ArcGIS\\\\arcgis-experience-builder-1.18\\\\client\\\\jimu-core\" --include=\"*.d.ts\" 2>/dev/null | grep -i \"enum\\\\|type\\\\|const\\\\|string\" | head -20)",
+      "Bash(grep -r \"SupportedItemTypes\" \"D:\\\\STUFF\\\\drillhole\\\\SDMA\\\\ArcGIS\\\\arcgis-experience-builder-1.18\\\\client\\\\jimu-core\\\\lib\" --include=\"*.d.ts\" 2>/dev/null | head -10)",
+      "Bash(grep -r \"getPortalUrl\\\\|portalSelf\\\\|getAppStore\" \"D:\\\\STUFF\\\\drillhole\\\\SDMA\\\\ArcGIS\\\\arcgis-experience-builder-1.18\\\\client\\\\jimu-core\" --include=\"*.d.ts\" 2>/dev/null | grep \"export\\\\|portal\" | head -10)"
+    ]
+  }
+}

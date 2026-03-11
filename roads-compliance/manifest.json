@@ -1,0 +1,20 @@
+{
+  "name": "roads-compliance",
+  "label": "Roads Compliance",
+  "type": "widget",
+  "version": "1.18.0",
+  "exbVersion": "1.18.0",
+  "author": "GIRISH PATHAK",
+  "description": "Select mine sites and compliance types then trigger a Jenkins road compliance analytics job.",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {},
+  "hasSettingPage": true,
+  "translatedLocales": [
+    "en"
+  ],
+  "defaultSize": {
+    "width": 380,
+    "height": 580
+  }
+}

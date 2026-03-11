@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep \"MultiSelect\" \"D:/STUFF/drillhole/SDMA/ArcGIS/arcgis-experience-builder-1.18/client/jimu-ui/lib/components/multi-select/index.d.ts\" 2>/dev/null | head -10 || grep -r \"MultiSelect\" \"D:/STUFF/drillhole/SDMA/ArcGIS/arcgis-experience-builder-1.18/client/jimu-ui\" --include=\"*.d.ts\" -l 2>/dev/null | head -5)",
+      "Bash(grep -r \"UtilitySelector\\\\|portalItem\\\\|PortalItem\" \"D:/STUFF/drillhole/SDMA/ArcGIS/arcgis-experience-builder-1.18/client/jimu-for-builder\" --include=\"*.d.ts\" -l 2>/dev/null | head -8)",
+      "Bash(grep -r \"UtilitySelector\" \"D:/STUFF/drillhole/SDMA/ArcGIS/arcgis-experience-builder-1.18/client/jimu-for-builder\" --include=\"*.d.ts\" -l 2>/dev/null | head -5)",
+      "Bash(grep -r \"UtilitySelector\" \"D:/STUFF/drillhole/SDMA/ArcGIS/arcgis-experience-builder-1.18/client\" --include=\"*.d.ts\" -l 2>/dev/null | head -5)",
+      "Bash(grep -r \"UtilitySelector\" \"D:/STUFF/drillhole/SDMA/ArcGIS/arcgis-experience-builder-1.18/client/your-extensions\" --include=\"*.tsx\" -l 2>/dev/null | head -5)"
+    ]
+  }
+}

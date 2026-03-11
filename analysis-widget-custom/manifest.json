@@ -1,0 +1,24 @@
+{
+  "name": "analysis-widget-custom",
+  "label": "Analysis Widget Custom",
+  "type": "widget",
+  "version": "1.0.0",
+  "exbVersion": "1.18.0",
+  "author": "OpenAI",
+  "description": "Client-side buffer and intersect analysis widget for ArcGIS Experience Builder.",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {
+    "hasSettingPage": true
+  },
+  "dependency": [
+    "jimu-arcgis"
+  ],
+  "translatedLocales": [
+    "en"
+  ],
+  "defaultSize": {
+    "width": 420,
+    "height": 680
+  }
+}

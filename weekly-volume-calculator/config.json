@@ -1,0 +1,8 @@
+{
+  "mineSites": ["JB", "ER", "Yandi", "MAC", "South Flank"],
+  "gpUtility": null,
+  "gpUrl": "",
+  "jenkinsBaseUrl": "",
+  "jobName": "",
+  "apiToken": ""
+}

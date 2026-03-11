@@ -1,0 +1,21 @@
+{
+  "name": "volume-calculator",
+  "label": "Volume Calculator",
+  "type": "widget",
+  "version": "1.18.0",
+  "exbVersion": "1.18.0",
+  "author": "GIRISH PATHAK",
+  "description": "Triggers a Jenkins volume calculation job after confirming that Surface DEM, Base Surface, and Stockpile footprints are up to date.",
+  "copyright": "",
+  "license": "http://www.apache.org/licenses/LICENSE-2.0",
+  "properties": {},
+  "hasSettingPage": true,
+  "supportAutoSize": true,
+  "translatedLocales": [
+    "en"
+  ],
+  "defaultSize": {
+    "width": 420,
+    "height": 520
+  }
+}
